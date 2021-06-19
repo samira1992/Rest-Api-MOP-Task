@@ -1,0 +1,3764 @@
+{
+	"info": {
+		"_postman_id": "91072502-4048-4e61-9749-2405b84b0727",
+		"name": "Core API-MOP Task",
+		"description": "REST API for Core API\n\nContact Support:\n Name: API Support\n Email: support@swagger.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MOP Task",
+			"item": [
+				{
+					"name": "Registration with already used data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains code parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error).to.include.key(\"code\");\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains message parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error).to.include.key(\"message\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response has  error message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.cause.message).to.eql(\"user already exists\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has code 010.010\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.code).to.eql(\"010.001\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 600ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"samirakrdzic26@gmail.com\",\n    \"name\": \"Samira\",\n    \"password\": \"Test123!\",\n    \"phoneNumber\": \"+28956321\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/register",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Registration with missing data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response code is 400\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error.code).to.include(\"400\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains message parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error.cause).to.include.key(\"message\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response has error message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.cause.message).to.eql(\"Key: 'Register.Password' Error:Field validation for 'Password' failed on the 'required' tag\\nKey: 'Register.PhoneNumber' Error:Field validation for 'PhoneNumber' failed on the 'required' tag\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has validation error message \", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.message).to.eql(\"validation error\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Has valid JSON schema\", function(){\r",
+									"    var schema = {\r",
+									"    \"success\": false,\r",
+									"    \"data\": null,\r",
+									"    \"error\": {\r",
+									"        \"code\": \"400\",\r",
+									"        \"message\": \"validation error\",\r",
+									"        \"stack\": \"\",\r",
+									"        \"cause\": {\r",
+									"            \"code\": \"\",\r",
+									"            \"message\": \"Key: 'Register.Password' Error:Field validation for 'Password' failed on the 'required' tag\\nKey: 'Register.PhoneNumber' Error:Field validation for 'PhoneNumber' failed on the 'required' tag\",\r",
+									"            \"stack\": \"\",\r",
+									"            \"cause\": null,\r",
+									"            \"validation\": null\r",
+									"        },\r",
+									"        \"validation\": {\r",
+									"            \"Password\": \"password_required\",\r",
+									"            \"PhoneNumber\": \"phonenumber_required\"\r",
+									"        }\r",
+									"    }\r",
+									"}\r",
+									"pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"samirakrdzic26@gmail.com\",\n    \"name\": \"Samira\",\n    \"password\": \"\",\n    \"phoneNumber\": \"\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/register",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Registration with incorrect e-mail format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response code is 400\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error.code).to.include(\"400\");\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains message parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error.cause).to.include.key(\"message\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response has error message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.cause.message).to.eql(\"Key: 'Register.Email' Error:Field validation for 'Email' failed on the 'email' tag\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has validation error message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.message).to.eql(\"validation error\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"samirakrdzic.@gmail.com\",\n    \"name\": \"Samira\",\n    \"password\": \"Test123!\",\n    \"phoneNumber\": \"+554885\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/register",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Registration with min limit for password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response code is 400\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error.code).to.include(\"400\");\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains message parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error.cause).to.include.key(\"message\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response has error message\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.cause.message).to.eql(\"Key: 'Register.Password' Error:Field validation for 'Password' failed on the 'min' tag\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has validation error message \", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.message).to.eql(\"validation error\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check password parameter and its value\", function(){\r",
+									"    var jsonData =pm.response.json();\r",
+									"    pm.expect(jsonData.error.validation).to.include.key(\"Password\");\r",
+									"    pm.expect(jsonData.error.validation.Password).to.be.equals(\"password_min\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"samirakrdzic2345@gmail.com\",\n    \"name\": \"Samira\",\n    \"password\": \"t\",\n    \"phoneNumber\": \"+554885\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/register",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Registration with invalid phone format",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response contains message parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.error.cause).to.include.key(\"message\");\r",
+									"    pm.expect(jsonData.error.message).to.equal(\"unable to register user\")\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response has message that invalid phone number is entered\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.error.cause.message).to.eql(\"invalid phone number\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"samirakrdzic23456@gmail.com\",\n    \"name\": \"Samira\",\n    \"password\": \"Test123!\",\n    \"phoneNumber\": \"5a54885\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/register",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Successful registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains accessToken parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.data).to.include.key(\"accessToken\");\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Success has value true\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.equal(true);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response has refreshToken parameter\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData.data).to.include.key(\"refreshToken\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 600ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"// set authToken variable\r",
+									"pm.collectionVariables.set(\"authToken\", pm.response.json().data.accessToken);\r",
+									"\r",
+									"var requestData= JSON.parse(pm.request.body.raw)\r",
+									"pm.collectionVariables.set(\"userEmail\", requestData.email);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.collectionVariables.set(\"userEmail\",\"{{$randomExampleEmail}}\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"name\": \"samira\",\n    \"password\": \"Test123!\",\n    \"phoneNumber\": \"+252525\"\n}\n\n\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/register",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/javascript",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\";\"Email\",\n    \"name\"; \"samira\",\n    \"password\"; \"Test123!\",\n    \"phoneNumber\"; \"+252525\"\n}\n\nvar Email= randomEmail()\n\nfunction randomEmail(){\n                var chars = 'abcdefghijklmnopqr';\n                var string = '';\n                for(var ii=0; ii<15; ii++)\n                    string += chars.charAt(Math.floor(Math.random() * chars.length));\n                \n                return(string + '@gmail.com');\n        }",
+									"options": {
+										"raw": {
+											"language": "javascript"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"password\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "This action sets terms of service as accepted, and logs time when user accepted the TOS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success has value true\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.success).to.equal(true);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/accept-tos",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"accept-tos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/accept-tos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"accept-tos"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/accept-tos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"accept-tos"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Triggers phone number verification process.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 202 status\",function(){\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains success parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData).to.include.key(\"success\");\r",
+									"  pm.expect(jsonData.success).to.equal(true)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/verify-phone",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"verify-phone"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/verify-phone",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"verify-phone"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/verify-phone",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"verify-phone"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Verifies users phone number.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 202 status\",function(){\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains success parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData).to.include.key(\"success\");\r",
+									"  pm.expect(jsonData.success).to.equal(true)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"9999\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/confirm-phone",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"confirm-phone"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/confirm-phone",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"confirm-phone"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/confirm-phone",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"confirm-phone"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "This action sets user email as verified.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 400 status\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success has value false\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.success).to.equal(false);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.error.message).to.equal(\"unable to confirm email\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"{{authToken}}\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/confirm-email",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"confirm-email"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/confirm-email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"confirm-email"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/confirm-email",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"confirm-email"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Log in with wrong password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 400 status\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verfiy error message\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.error.message).to.be.equal(\"unable to login user\");\r",
+									"  pm.expect(jsonData.error.cause.cause.message).to.be.equal(\"passwords don't match\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"samirak@gmail.com\",\n    \"password\": \"Test123!4\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/login",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Log in with wrong e-mail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 400 status\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify error message\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.error.cause.message).to.equal(\"Key: 'Login.Email' Error:Field validation for 'Email' failed on the 'email' tag\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"samirak.@gmail.com\",\n    \"password\": \"Test123!\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/login",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "This action creates forgot password request. It issues forgot password token and sends email to user.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 201 status\",function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success has value true\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.success).to.equal(true);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{userEmail}}\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/forgot-password",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"forgot-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/forgot-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/forgot-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Verify that user is not able to log in with blank email or password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 400 status\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verfiy error message\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.error.cause.message).to.equal(\"Key: 'Login.Email' Error:Field validation for 'Email' failed on the 'email' tag\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \" \",\n    \"password\": \"Test123!4\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/login",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Authorize user session with additional 2FA token and issues authorized tokens.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 200 status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains token parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.data).to.include.key(\"accessToken\");\r",
+									"  pm.expect(jsonData.data).to.include.key(\"refreshToken\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// set authToken variable\r",
+									"pm.collectionVariables.set(\"authToken\", pm.response.json().data.accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"9999\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/authorize",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"authorize"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/authorize",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"authorize"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/authorize",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"authorize"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Authorize user session with wrong additional 2FA token and issues authorized tokens.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 400 status\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains message parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.error.cause).to.include.key(\"message\");\r",
+									"  \r",
+									"});\r",
+									" pm.test(\"Error message\", function(){\r",
+									"      var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.error.cause.message).to.equal(\"invalid code provided\");\r",
+									" });\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"9998\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/authorize",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"authorize"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/authorize",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"authorize"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/authorize",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"authorize"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Successful log in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 200 status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains token parameters\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.data).to.include.key(\"accessToken\");\r",
+									"  pm.expect(jsonData.data).to.include.key(\"refreshToken\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 600ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"// set authToken variable\r",
+									"pm.collectionVariables.set(\"authToken\", pm.response.json().data.accessToken);\r",
+									"\r",
+									"//set refreshToken\r",
+									"pm.collectionVariables.set(\"refreshToken\", pm.response.json().data.refreshToken);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"{{userEmail}}\",\n    \"password\": \"Test123!\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/login",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "This action is used when accesToken is expired, using refresh token new token pair is generated",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 200 status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains token parameter\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.data).to.include.key(\"accessToken\");\r",
+									"  pm.expect(jsonData.data).to.include.key(\"refreshToken\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 600ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
+									"});\r",
+									"\r",
+									"// set authToken variable\r",
+									"pm.collectionVariables.set(\"authToken\", pm.response.json().data.accessToken);\r",
+									"\r",
+									"//set refreshToken\r",
+									"pm.collectionVariables.set(\"refreshToken\", pm.response.json().data.refreshToken);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"{{refreshToken}}\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/refresh-token",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"refresh-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/refresh-token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"accessToken\": \"ut Duis commodo\",\n \"refreshToken\": \"dolore offi\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/refresh-token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Sets multi factor authentication enabled or disabled",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 200 status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success has value true\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.success).to.equal(true);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"9999\",\n    \"isEnabled\": true\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/mfa",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"mfa"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\",\n    \"isEnabled\": \"<boolean>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/mfa",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"mfa"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"code\": \"<string>\",\n    \"isEnabled\": \"<boolean>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/mfa",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"mfa"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "13.Change password with incorrect confirmed password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 400 status\",function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success value is false\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.success).to.equal(false);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error message\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.error.cause.cause.message).to.equal(\"passwords don't match\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Has valid JSON schema\", function(){\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPassword\": \"Test1234!\",\n    \"password\": \"----Test123!\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/change-password",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"change-password"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"change-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Change password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 202 status\",function(){\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success has value true\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.success).to.equal(true);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPassword\": \"Test1234!\",\n    \"password\": \"Test123!\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/change-password",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"change-password"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newPassword\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"change-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Returns user profile object",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 200 status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Reponse contains id, name, email and password parameters\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.data).to.include.key(\"id\");\r",
+									"  pm.expect(jsonData.data).to.include.key(\"name\");\r",
+									"  pm.expect(jsonData.data).to.include.key(\"email\");\r",
+									"  pm.expect(jsonData.data).to.include.key(\"phoneNumber\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify value of parameters\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"    pm.expect(jsonData.data.name).to.be.equal(\"samira\");\r",
+									"    pm.expect(jsonData.data.email).to.be.equal(pm.collectionVariables.get(\"userEmail\"));\r",
+									"    pm.expect(jsonData.data.phoneNumber).to.be.equal(\"+252525\");\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"// set id of user\r",
+									"pm.collectionVariables.set(\"id\", pm.response.json().data.id);\r",
+									"\r",
+									"\r",
+									" "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/profile",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"email\": \"elit tempor incididu\",\n \"address\": \"nulla esse\",\n \"area\": \"laborum dolore\",\n \"bio\": \"aliqua fugiat\",\n \"birthDate\": \"sed nostrud adipisicing\",\n \"city\": \"ex aute elit enim nostrud\",\n \"countryId\": -35871084,\n \"createdAt\": \"id mollit laboris dolor\",\n \"deletedAt\": \"laborum qui officia\",\n \"genderId\": -34979543,\n \"id\": 14237648,\n \"invitedByUserId\": 549885,\n \"isActive\": true,\n \"isBlocked\": false,\n \"isEmailVerified\": false,\n \"isMfaEnabled\": false,\n \"isPhoneVerified\": true,\n \"name\": \"ut consequat sint incididunt cillum\",\n \"phoneNumber\": \"dolor qui ipsum Lorem\",\n \"postCode\": \"sint nisi Duis au\",\n \"profileImage\": \"minim esse\",\n \"state\": \"esse\",\n \"tosAccepted\": false,\n \"tosAcceptedAt\": \"nostrud cupidatat dolor sit et\",\n \"updatedAt\": \"dolore\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"profile"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit account information",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 202 status\",function(){\r",
+									"    pm.response.to.have.status(202);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify success parameter and its value\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData).to.include.key(\"success\");\r",
+									"  pm.expect(jsonData.success).to.equal(true)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Has valid JSON schema\", function(){\r",
+									"    var schema = {\r",
+									"    \"success\": true,\r",
+									"    \"data\": null,\r",
+									"    \"error\": null\r",
+									"}\r",
+									"pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"New address\",\n    \"name\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/profile",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Accepted",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"address\": \"<string>\",\n    \"name\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"profile"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"email\": \"elit tempor incididu\",\n \"address\": \"nulla esse\",\n \"area\": \"laborum dolore\",\n \"bio\": \"aliqua fugiat\",\n \"birthDate\": \"sed nostrud adipisicing\",\n \"city\": \"ex aute elit enim nostrud\",\n \"countryId\": -35871084,\n \"createdAt\": \"id mollit laboris dolor\",\n \"deletedAt\": \"laborum qui officia\",\n \"genderId\": -34979543,\n \"id\": 14237648,\n \"invitedByUserId\": 549885,\n \"isActive\": true,\n \"isBlocked\": false,\n \"isEmailVerified\": false,\n \"isMfaEnabled\": false,\n \"isPhoneVerified\": true,\n \"name\": \"ut consequat sint incididunt cillum\",\n \"phoneNumber\": \"dolor qui ipsum Lorem\",\n \"postCode\": \"sint nisi Duis au\",\n \"profileImage\": \"minim esse\",\n \"state\": \"esse\",\n \"tosAccepted\": false,\n \"tosAcceptedAt\": \"nostrud cupidatat dolor sit et\",\n \"updatedAt\": \"dolore\"\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"address\": \"<string>\",\n    \"name\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"profile"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Log out-Removes Refresh token from database and logs out user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 200 status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Success has value true\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData.success).to.equal(true);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"    \r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 400ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"{{refreshToken}}\"\n}"
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/logout",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/account/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"logout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Requests Multi Factor Authentication (MFA) code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response has 200 status\",function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify success parameter and its value\", function(){\r",
+									"    var jsonData=pm.response.json();\r",
+									"  pm.expect(jsonData).to.include.key(\"success\");\r",
+									"  pm.expect(jsonData.success).to.equal(true)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is json\", function(){\r",
+									"pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\",function(){\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/account/request-mfa",
+							"protocol": "https",
+							"host": [
+								"production-qa-fxhcwcz4ja-ew",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"account",
+								"request-mfa"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/request-mfa",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"request-mfa"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "(Required) Authorization Bearer token",
+										"key": "Authorization",
+										"value": "ut in dolore cillum"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/request-mfa",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"request-mfa"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "apikey"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Dislays application health status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Msg is Health \", function(){\r",
+							"    var jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData).to.include.key(\"msg:\")\r",
+							"    \r",
+							"    console.log(jsonData.msg)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response is json\", function(){\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 400ms\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://production-qa-fxhcwcz4ja-ew.a.run.app/health",
+					"protocol": "https",
+					"host": [
+						"production-qa-fxhcwcz4ja-ew",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				},
+				{
+					"name": "Bad Request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"cause\": {\n  \"cause\": {\n   \"value\": \"<Circular reference to #/components/schemas/vm.ResponseError detected>\"\n  },\n  \"code\": \"ut laborum in\",\n  \"message\": \"labore veniam sed\",\n  \"stack\": \"officia deserunt dolor commodo exercitation\",\n  \"validation\": {}\n },\n \"code\": \"ullamco officia\",\n \"message\": \"tempor nostrud\",\n \"stack\": \"tempor\",\n \"validation\": {}\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		},
+		{
+			"key": "authToken",
+			"value": "test"
+		},
+		{
+			"key": "userEmail",
+			"value": ""
+		},
+		{
+			"key": "refreshToken",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		}
+	]
+}
