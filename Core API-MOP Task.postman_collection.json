@@ -50,9 +50,6 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Response time is less than 600ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
-									"});\r",
 									""
 								],
 								"type": "text/javascript"
@@ -216,9 +213,7 @@
 									"pm.response.to.have.jsonSchema(schema);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -359,9 +354,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -506,9 +499,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -774,9 +765,7 @@
 									"    pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 600ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
-									"});\r",
+									"\r",
 									"\r",
 									"// set authToken variable\r",
 									"pm.collectionVariables.set(\"authToken\", pm.response.json().data.accessToken);\r",
@@ -941,9 +930,7 @@
 									"    pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -1074,9 +1061,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1206,9 +1191,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1356,10 +1339,7 @@
 									"    var jsonData=pm.response.json();\r",
 									"  pm.expect(jsonData.error.message).to.equal(\"unable to confirm email\");\r",
 									"});\r",
-									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1492,9 +1472,7 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1625,9 +1603,7 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1749,9 +1725,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1883,9 +1857,7 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -2297,9 +2269,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 600ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
-									"});\r",
+									"\r",
 									"\r",
 									"// set authToken variable\r",
 									"pm.collectionVariables.set(\"authToken\", pm.response.json().data.accessToken);\r",
@@ -2437,9 +2407,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 600ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(600);\r",
-									"});\r",
+									"\r",
 									"\r",
 									"// set authToken variable\r",
 									"pm.collectionVariables.set(\"authToken\", pm.response.json().data.accessToken);\r",
@@ -2570,9 +2538,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -2695,7 +2661,7 @@
 					]
 				},
 				{
-					"name": "13.Change password with incorrect confirmed password",
+					"name": "Change password with incorrect confirmed password",
 					"event": [
 						{
 							"listen": "test",
@@ -2719,9 +2685,6 @@
 									"    pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});\r",
 									"\r",
 									"\r",
 									"\r",
@@ -2869,9 +2832,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -3026,9 +2987,6 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});\r",
 									"\r",
 									"\r",
 									"\r",
@@ -3176,9 +3134,7 @@
 									"pm.response.to.have.jsonSchema(schema);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -3322,9 +3278,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 400ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -3467,9 +3421,7 @@
 									"pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response time is less than 200ms\",function(){\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -3625,9 +3577,7 @@
 							"    pm.response.to.be.json;\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response time is less than 400ms\",function(){\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
-							"});\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript"
