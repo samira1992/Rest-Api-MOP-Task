@@ -7,5 +7,6 @@
 
 3. Check all tests have passed
 
-![image](https://user-images.githubusercontent.com/49342424/122650109-56839a00-d131-11eb-82eb-2a2725979bfa.png)
+![image](https://user-images.githubusercontent.com/49342424/122650311-77002400-d132-11eb-9ef6-3858d2e345cf.png)
+
 
